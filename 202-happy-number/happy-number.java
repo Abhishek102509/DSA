@@ -1,23 +1,20 @@
 class Solution {
-    public boolean isHappy(int n) {
-        Set <Integer> visit = new HashSet<>();
-        
-        while(!visit.contains(n)){
-            visit.add(n);
-            n = getNextNumber(n);
-            if(n ==1){
-                return true;
-            }
+    private int getNext(int n){
+        int totalSum = 0;
+        while(n>0){
+            int temp = n%10;
+            totalSum+=temp*temp;
+            n=n/10;
         }
-        return false;
+        return totalSum;
     }
-    private int getNextNumber(int n){
-        int output = 0;
-        while (n > 0){
-            int digit = n %10;
-            output += digit*digit;
-            n = n/10;
+
+    public boolean isHappy(int n) {
+        Set<Integer> seen = new HashSet<>();
+        while(n!=1&&!seen.contains(n)){
+            seen.add(n);
+            n = getNext(n);
         }
-        return output;
+        return n==1;
     }
 }
