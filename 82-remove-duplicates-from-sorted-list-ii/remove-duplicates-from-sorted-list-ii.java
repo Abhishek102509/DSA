@@ -19,13 +19,14 @@ class Solution {
 
         while(cur != null && cur.next != null){
             if(cur.val == cur.next.val){
-
+                     // Skip all nodes with the same value
                 while(cur.next != null && cur.val == cur.next.val){
                     cur = cur.next;
                 }
-                prev.next = cur.next;
+                prev.next = cur.next;// Remove duplicates
             }else{
                 prev = prev.next;
+                // Move to next distinct node
             }
             cur= cur.next;
         }
