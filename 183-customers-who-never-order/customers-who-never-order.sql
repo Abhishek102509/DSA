@@ -8,10 +8,18 @@
 --     SELECT customerId FROM Orders
 -- );
 
-SELECT name AS Customers
+-- SELECT name AS Customers
+-- FROM Customers c
+-- WHERE NOT EXISTS (
+--     SELECT *
+--     FROM Orders o
+--     WHERE o.customerId = c.id
+-- );
+
+
+
+SELECT c.name AS Customers
 FROM Customers c
-WHERE NOT EXISTS (
-    SELECT *
-    FROM Orders o
-    WHERE o.customerId = c.id
-);
+LEFT JOIN Orders o ON c.id = o.customerId
+WHERE o.customerId IS NULL;
+
